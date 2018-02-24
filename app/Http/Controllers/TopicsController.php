@@ -18,7 +18,7 @@ class TopicsController extends Controller
     {
         $categories = Category::all();
 
-        return view('topics.index')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
+        return view('index')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
                                    ->with('categories', $categories);
     }
 
@@ -51,7 +51,7 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
