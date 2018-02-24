@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Topic;
 use App\Category;
+use Auth;
+use Session;
 
 class TopicsController extends Controller
 {
@@ -18,7 +20,7 @@ class TopicsController extends Controller
     {
         $categories = Category::all();
 
-        return view('index')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
+        return view('forum')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
                                    ->with('categories', $categories);
     }
 
@@ -29,7 +31,7 @@ class TopicsController extends Controller
      */
     public function create()
     {
-        
+        return view('topics.create')->with('categories', Category::all());
     }
 
     /**
@@ -40,7 +42,23 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'title' => 'required',
+            'category_id' => 'required',
+            'description' => 'required'
+        ]);
+
+        $topic = Topic::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'description' => $request->description            
+        ]);
+
+       // Session::flash('success', 'You started new Topic');
+
+        return redirect()->route('topics.create');
     }
 
     /**
