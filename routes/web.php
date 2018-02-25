@@ -27,7 +27,7 @@ Route::get('categories/create', 'CategoriesController@create')->name('categories
 
 Route::post('categories/store', 'CategoriesController@store')->name('categories.store');
 
-Route::post('categories/destroy', 'CategoriesController@destroy')->name('categories.destroy');
+Route::get('categories/destroy/{id}', 'CategoriesController@destroy')->name('categories.destroy');
 
 Route::get('categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
 

@@ -36,12 +36,12 @@
                                                    
                           <td> 
                                     
-                           <form action="{{ route('categories.destroy', ['category' => $category->id])}}" method="POST">
+                           
                               <a href="{{ route('categories.edit', ['category' => $category->id])}}" class="btn btn-sm btn-primary">Edit</a>
                               {{csrf_field()}}
                               {{ method_field('DELETE') }}
-                              <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                           </form>                              
+                              <a href="{{ route('categories.destroy', ['category' => $category->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                                         
                           </td>                                                      
                           </tr>
                           @endforeach
