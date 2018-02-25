@@ -19,4 +19,9 @@ class Topic extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Reply');
+    }
 }
