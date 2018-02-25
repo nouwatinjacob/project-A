@@ -31,4 +31,6 @@ Route::get('categories/destroy/{id}', 'CategoriesController@destroy')->name('cat
 
 Route::get('categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
 
+Route::get('categories/update/{id}', 'CategoriesController@update')->name('categories.update');
+
 Route::post('topics/reply/{id}', 'RepliesController@store')->name('reply.store');

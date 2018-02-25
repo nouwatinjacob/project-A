@@ -69,7 +69,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('categories.edit')->with('category', Category::find($id));
     }
 
     /**

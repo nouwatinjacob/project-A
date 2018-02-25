@@ -38,8 +38,7 @@
                                     
                            
                               <a href="{{ route('categories.edit', ['category' => $category->id])}}" class="btn btn-sm btn-primary">Edit</a>
-                              {{csrf_field()}}
-                              {{ method_field('DELETE') }}
+                              
                               <a href="{{ route('categories.destroy', ['category' => $category->id])}}" class="btn btn-sm btn-danger">Delete</a>
                                                          
                           </td>                                                      
