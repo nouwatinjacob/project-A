@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Topic;
 use App\Category;
+use App\Reply;
 use Auth;
 use Session;
 
@@ -56,7 +57,7 @@ class TopicsController extends Controller
             'description' => $request->description            
         ]);
 
-       // Session::flash('success', 'You started new Topic');
+        Session::flash('success', 'You started new Topic');
 
         return redirect()->route('topics.create');
     }
@@ -69,7 +70,13 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-       
+       $topic = Topic::find($id);
+       $categories = Category::all();
+       $replies = Reply::where('topic_id', $id)->get();
+
+       return view('topics.show')->with('topic', $topic)
+                                 ->with('categories', $categories)
+                                 ->with('replies', $replies);
     }
 
     /**
@@ -105,4 +112,5 @@ class TopicsController extends Controller
     {
         //
     }
+    
 }
