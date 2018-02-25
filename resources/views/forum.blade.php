@@ -9,7 +9,7 @@
                 <div class="card-header">
                    <img src="{{ $topic->user->avatar }}" width="35px" height="35px">
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="" class="text-muted">{{ $topic->title }}</a>
+                    <a href="{{ route('topics.show', ['id' => $topic->id])}}" class="text-muted">{{ $topic->title }}</a>
                 </div>
 
                 <div class="card-body">
