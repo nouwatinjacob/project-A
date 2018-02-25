@@ -81,7 +81,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $category = Category::find($id);        
+
+        $category->name = $request->name;
+        $category->save();
+        
+        Session::flash('success', 'Category updated');
+        return redirect()->route('categories');
     }
 
     /**
