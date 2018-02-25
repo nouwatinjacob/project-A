@@ -20,3 +20,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('topics', 'TopicsController');
+
+Route::get('categories', 'CategoriesController@index')->name('categories');
+
+Route::get('categories/create', 'CategoriesController@create')->name('categories.create');
+
+Route::post('categories/store', 'CategoriesController@store')->name('categories.store');
+
+Route::post('categories/destroy', 'CategoriesController@destroy')->name('categories.destroy');
+
+Route::get('categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
+
+Route::post('topics/reply/{id}', 'RepliesController@store')->name('reply.store');
