@@ -3,18 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
-                    <ul class="list-group">                        
-                        <li class="list-group-item">
-                               
-                        </li>                       
-                    </ul>
-               </div>
-            </div>
-        </div>
-
+        
         <div class="col-md-8">         
             <div class="card">
                 <div class="card-header">
@@ -54,6 +43,23 @@
             </div>         
         </div>        
         
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Category</div>
+
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach($categories as $category)
+                            <li class="list-group-item">
+                                {{ $category->name }}
+                                <span class="badge badge-secondary pull-right">{{ $category->topics->count()}}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection
