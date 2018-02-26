@@ -34,3 +34,5 @@ Route::get('categories/edit/{id}', 'CategoriesController@edit')->name('categorie
 Route::post('categories/update/{id}', 'CategoriesController@update')->name('categories.update');
 
 Route::post('topics/reply/{id}', 'RepliesController@store')->name('reply.store');
+
+Route::get('topics/category/{id}', 'TopicsController@topicsWithCatId')->name('topics.category');

@@ -118,5 +118,24 @@ class TopicsController extends Controller
     {
         //
     }
+
+    public function topicsWithCatId($id)
+    {
+        $topics = Topic::where('category_id', $id)->paginate(5);
+
+        $category = Category::find($id);
+
+        if($topics->count() > 0)
+        {
+            return view('topics.categoryTopic')->with('topics', $topics)
+                                           ->with('categories', Category::all())
+                                           ->with('category', $category);
+        }
+        else{
+            Session::flash('success', 'This category has no Topics');
+            return redirect()->back();
+        }
+        
+    }
     
 }

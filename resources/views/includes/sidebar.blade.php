@@ -5,8 +5,8 @@
                     <ul class="list-group">
                         @foreach($categories as $category)
                             <li class="list-group-item">
-                                {{ $category->name }}
-                                <span class="badge badge-secondary float-right">{{ $category->topics->count()}}</span>
+                                <a href="{{ route('topics.category', ['id' => $category->id])}}">{{ $category->name }}</a>
+                                <a href="{{ route('topics.category', ['id' => $category->id])}}"><span class="badge badge-secondary float-right">{{ $category->topics->count()}}</span></a>
                             </li>
                         @endforeach
                     </ul>
