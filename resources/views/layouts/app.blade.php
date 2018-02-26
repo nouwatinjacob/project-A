@@ -30,7 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(Auth::check())
+                        <li><a class="nav-link" href="{{ route('topics.index') }}">Forum</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

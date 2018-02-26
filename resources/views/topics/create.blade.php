@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        
+    @include('includes.errors')
+    <div class="row">        
         <div class="col-md-8">         
             <div class="card">
                 <div class="card-header">
@@ -22,6 +22,7 @@
                       <div class="form-group">
                         <label for="category">Pick a Category</label>
                         <select class="form-control" name="category_id" id="category_id">
+                          <option>--Pick a Category--</option>  
                           @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                           @endforeach
@@ -44,20 +45,7 @@
         </div>        
         
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Category</div>
-
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach($categories as $category)
-                            <li class="list-group-item">
-                                {{ $category->name }}
-                                <span class="badge badge-secondary pull-right">{{ $category->topics->count()}}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @include('includes.sidebar')
         </div>
 
     </div>
