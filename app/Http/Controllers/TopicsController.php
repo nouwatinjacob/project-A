@@ -74,6 +74,12 @@ class TopicsController extends Controller
        $categories = Category::all();
        $replies = Reply::where('topic_id', $id)->get();
 
+       if($topic)
+       {
+           $topic->view += 1;
+           $topic->save();
+       }       
+
        return view('topics.show')->with('topic', $topic)
                                  ->with('categories', $categories)
                                  ->with('replies', $replies);

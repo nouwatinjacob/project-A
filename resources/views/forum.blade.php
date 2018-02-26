@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-footer">
                 <i class="fas fa-comment"></i> 500 &nbsp;&nbsp;
-                <i class="fas fa-eye"></i> 1,568 &nbsp;&nbsp;
+                <i class="fas fa-eye"> {{ $topic->view }}</i>  &nbsp;&nbsp;
                 <i class="fas fa-clock"></i> {{ $topic->created_at->diffForHumans() }}
                 </div>
             </div>

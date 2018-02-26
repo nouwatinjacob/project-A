@@ -19,6 +19,7 @@ class CreateTopicsTable extends Migration
             $table->string('title');
             $table->integer('category_id')->unsigned();
             $table->text('description');
+            $table->bigInteger('view')->default(0);
             $table->timestamps();
         });
     }
