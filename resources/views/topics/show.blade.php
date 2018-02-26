@@ -15,8 +15,8 @@
                     {{ $topic->description }}
                 </div>
                 <div class="card-footer">
-                <i class="fas fa-thumbs-up text-success"> 20</i>  &nbsp;&nbsp;
-                <i class="fas fa-thumbs-down text-danger"> 5</i>  &nbsp;&nbsp;
+                <a href="{{ route('topic.like', ['id' => $topic->id])}}"><i class="fas fa-thumbs-up text-success"> {{ $likes }}</i></a>  &nbsp;&nbsp;
+                <a href="{{ route('topic.unlike', ['id' => $topic->id])}}"><i class="fas fa-thumbs-down text-danger"> {{ $unlikes }}</i></a>  &nbsp;&nbsp;
                 <i class="fas fa-clock text-muted"> Posted on: {{ $topic->created_at->diffForHumans() }}</i>
                 </div>
             </div>

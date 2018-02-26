@@ -36,3 +36,7 @@ Route::post('categories/update/{id}', 'CategoriesController@update')->name('cate
 Route::post('topics/reply/{id}', 'RepliesController@store')->name('reply.store');
 
 Route::get('topics/category/{id}', 'TopicsController@topicsWithCatId')->name('topics.category');
+
+Route::get('topic/like/{id}', 'TopicsController@like')->name('topic.like');
+
+Route::get('topic/unlike/{id}', 'TopicsController@unlike')->name('topic.unlike');
