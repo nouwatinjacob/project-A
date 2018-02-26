@@ -15,8 +15,8 @@
                     {{ $topic->description }}
                 </div>
                 <div class="card-footer">
-                <a href="{{ route('topic.like', ['id' => $topic->id])}}"><i class="fas fa-thumbs-up text-success"> {{ $likes }}</i></a>  &nbsp;&nbsp;
-                <a href="{{ route('topic.unlike', ['id' => $topic->id])}}"><i class="fas fa-thumbs-down text-danger"> {{ $unlikes }}</i></a>  &nbsp;&nbsp;
+                <a href="{{ route('topic.like', ['id' => $topic->id])}}"><i class="fas fa-thumbs-up text-success"> {{ $topic_likes }}</i></a>  &nbsp;&nbsp;
+                <a href="{{ route('topic.unlike', ['id' => $topic->id])}}"><i class="fas fa-thumbs-down text-danger"> {{ $topic_unlikes }}</i></a>  &nbsp;&nbsp;
                 <i class="fas fa-clock text-muted"> Posted on: {{ $topic->created_at->diffForHumans() }}</i>
                 </div>
             </div>
@@ -32,8 +32,8 @@
                     {{ $reply->content }}
                 </div>
                 <div class="card-footer">
-                <i class="fas fa-thumbs-up text-success"> 10</i>  &nbsp;&nbsp;
-                <i class="fas fa-thumbs-down text-danger"> 3</i>  &nbsp;&nbsp;
+                <a href="{{ route('reply.like', ['id' => $reply->id])}}"><i class="fas fa-thumbs-up text-success"> {{ $reply->replyLikes()->where('like', 1)->count() }}</i></a>  &nbsp;&nbsp;
+                <a href="{{ route('reply.unlike', ['id' => $reply->id])}}"><i class="fas fa-thumbs-down text-danger"> {{ $reply->replyLikes()->where('like', 0)->count() }}</i></a>  &nbsp;&nbsp;
                 <i class="fas fa-clock text-muted"> Posted on: {{ $reply->created_at->diffForHumans() }}</i>
                 </div>
             </div>
