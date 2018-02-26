@@ -27,6 +27,5 @@ class Reply extends Model
     {
         return $this->hasMany('App\ReplyLike');
     }
-    
-    
+        
 }
