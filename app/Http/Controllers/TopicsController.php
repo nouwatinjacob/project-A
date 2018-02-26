@@ -8,6 +8,7 @@ use App\Topic;
 use App\Category;
 use App\Reply;
 use App\TopicLike;
+use App\ReplyLike;
 use Auth;
 use Session;
 
@@ -75,8 +76,8 @@ class TopicsController extends Controller
        $categories = Category::all();
        $replies = Reply::where('topic_id', $id)->get();
 
-       $likes = $topic->topicLikes()->where('like', 1)->count();
-       $unlikes = $topic->topicLikes()->where('like', 0)->count();
+       $topic_likes = $topic->topicLikes()->where('like', 1)->count();
+       $topic_unlikes = $topic->topicLikes()->where('like', 0)->count();
 
        if($topic)
        {
@@ -87,8 +88,8 @@ class TopicsController extends Controller
        return view('topics.show')->with('topic', $topic)
                                  ->with('categories', $categories)
                                  ->with('replies', $replies)
-                                 ->with('likes', $likes)
-                                 ->with('unlikes', $unlikes);
+                                 ->with('topic_likes', $topic_likes)
+                                 ->with('topic_unlikes', $topic_unlikes);
     }
 
     /**
