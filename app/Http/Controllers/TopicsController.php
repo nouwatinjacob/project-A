@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Topic;
 use App\Category;
 use App\Reply;
+use App\TopicLike;
 use Auth;
 use Session;
 
@@ -74,6 +75,9 @@ class TopicsController extends Controller
        $categories = Category::all();
        $replies = Reply::where('topic_id', $id)->get();
 
+       $likes = $topic->topicLikes()->where('like', 1)->count();
+       $unlikes = $topic->topicLikes()->where('like', 0)->count();
+
        if($topic)
        {
            $topic->view += 1;
@@ -82,7 +86,9 @@ class TopicsController extends Controller
 
        return view('topics.show')->with('topic', $topic)
                                  ->with('categories', $categories)
-                                 ->with('replies', $replies);
+                                 ->with('replies', $replies)
+                                 ->with('likes', $likes)
+                                 ->with('unlikes', $unlikes);
     }
 
     /**
@@ -132,9 +138,77 @@ class TopicsController extends Controller
                                            ->with('category', $category);
         }
         else{
-            Session::flash('success', 'This category has no Topics');
+            Session::flash('info', 'This category has no Topics');
             return redirect()->back();
         }
+        
+    }
+
+    public function like($id)
+    {   
+        $liked = TopicLike::where('user_id', Auth::id())->where('topic_id', $id)->where('like', 1)->first();
+        $unliked = TopicLike::where('user_id', Auth::id())->where('topic_id', $id)->where('like', 0)->first();
+
+        if($liked){
+            Session::flash('info', 'You have liked this Topic');
+            return redirect()->back();
+        }
+
+        elseif($unliked)
+        {
+            $unliked->delete();
+            TopicLike::create([
+                'user_id' => Auth::id(),
+                'topic_id' => $id,
+                'like' => 1
+            ]);
+
+            Session::flash('success', 'You now liked this Topic');
+            return redirect()->back();
+        }
+
+        else{
+             TopicLike::create([
+                'user_id' => Auth::id(),
+                'topic_id' => $id,
+                'like' => 1
+            ]);
+
+            Session::flash('success', 'You now liked this Topic');
+            return redirect()->back();
+        }
+        
+    }
+
+    public function unlike($id)
+    {
+        $liked = TopicLike::where('user_id', Auth::id())->where('topic_id', $id)->where('like', 1)->first();
+        $unliked = TopicLike::where('user_id', Auth::id())->where('topic_id', $id)->where('like', 0)->first();
+
+        if($liked){
+            $liked->delete();
+
+            TopicLike::create([
+                'user_id' => Auth::id(),
+                'topic_id' => $id,
+                'like' => 0
+            ]);
+            Session::flash('success', 'You now unliked this Topic');
+            return redirect()->back();
+        }
+        elseif($unliked){
+            Session::flash('success', 'You have not liked this Topic');
+            return redirect()->back();
+        }
+        else{
+            TopicLike::create([
+                'user_id' => Auth::id(),
+                'topic_id' => $id,
+                'like' => 0
+            ]);
+            Session::flash('success', 'You now unliked this Topic');
+            return redirect()->back();
+        }        
         
     }
     
