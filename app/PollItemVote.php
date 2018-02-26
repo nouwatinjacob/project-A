@@ -20,5 +20,8 @@ class PollItemVote extends Model
         return $this->belongsTo('App\User');
     }
 
-    
+    public function pollItem()
+    {
+        return $this->belongsTo('App\PollItem');
+    }
 }

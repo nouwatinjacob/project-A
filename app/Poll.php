@@ -19,4 +19,9 @@ class Poll extends Model
     {
         return $this->hasMany('App\PollItem');
     }
+
+    public function pollItemVotes()
+    {
+        return $this->hasMany('App\PollItemVote');
+    }
 }
