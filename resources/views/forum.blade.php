@@ -16,9 +16,9 @@
                     {{ str_limit($topic->description, 200) }}
                 </div>
                 <div class="card-footer">
-                <i class="fas fa-comment"></i> 500 &nbsp;&nbsp;
+                <i class="fas fa-comment"> {{ $topic->replies->count()}}</i> &nbsp;&nbsp;
                 <i class="fas fa-eye"> {{ $topic->view }}</i>  &nbsp;&nbsp;
-                <i class="fas fa-clock"></i> {{ $topic->created_at->diffForHumans() }}
+                <i class="fas fa-clock"> {{ $topic->created_at->diffForHumans() }}</i> 
                 </div>
             </div>
             <br>
@@ -39,7 +39,7 @@
                         @foreach($categories as $category)
                             <li class="list-group-item">
                                 {{ $category->name }}
-                                <span class="badge badge-secondary pull-right">{{ $category->topics->count()}}</span>
+                                <span class="badge badge-secondary float-right">{{ $category->topics->count()}}</span>
                             </li>
                         @endforeach
                     </ul>
