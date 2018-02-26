@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'auth'], function(){
+
 Route::resource('topics', 'TopicsController');
 
 Route::get('categories', 'CategoriesController@index')->name('categories');
@@ -44,3 +46,4 @@ Route::get('topic/unlike/{id}', 'TopicsController@unlike')->name('topic.unlike')
 Route::get('reply/like/{id}', 'RepliesController@like')->name('reply.like');
 
 Route::get('reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
+});
