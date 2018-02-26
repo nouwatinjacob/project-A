@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Reply');
     }
+
+    public function poll()
+    {
+        return $this->hasMany('App\Poll');
+    }
 }
