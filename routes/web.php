@@ -40,3 +40,7 @@ Route::get('topics/category/{id}', 'TopicsController@topicsWithCatId')->name('to
 Route::get('topic/like/{id}', 'TopicsController@like')->name('topic.like');
 
 Route::get('topic/unlike/{id}', 'TopicsController@unlike')->name('topic.unlike');
+
+Route::get('reply/like/{id}', 'RepliesController@like')->name('reply.like');
+
+Route::get('reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
