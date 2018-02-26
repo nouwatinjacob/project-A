@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\TopicLike;
+
 class Topic extends Model
 {
     protected $fillable = [
@@ -28,5 +30,19 @@ class Topic extends Model
     public function topicLikes()
     {
         return $this->hasMany('App\TopicLike');
+    }
+
+    public function check_if_topic_is_liked_by_auth()
+    {
+        $liked = TopicLike::where('user-id', Auth::id())->where('like', 1);
+        $unliked = TopicLike::where('user-id', Auth::id())->where('like', 0);
+
+        if($liked) {
+            return true;
+        }
+        elseif ($unlike) {
+            return false;
+        }
+        
     }
 }
