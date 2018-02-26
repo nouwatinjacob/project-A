@@ -4,14 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <ul class="list-group">
-                <li class="list-group-item"><a href="{{ route('categories')}}">Category</a></li>
-                <li class="list-group-item"><a href="{{ route('categories.create')}}">Create a new Category</a></li>
-              </ul>
-            </div>
-          </div>
+          @include('includes.admin_sidebar')
         </div>
 
         <div class="col-md-8">
