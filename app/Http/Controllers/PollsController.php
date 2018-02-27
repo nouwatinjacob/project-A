@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PollsController extends Controller
 {
-    public function index()
+    public function create()
     {
         return view('polls.create');
     }
