@@ -9,12 +9,12 @@
 
         <div class="col-md-8">
             <div class="card">
-
+                <div class="card-header">Polls</div>
                 <div class="card-body ">
                 <table class="table table-hover">
                       <thead>
                         <th>
-                          Name
+                          Poll Title
                         </th>
                         <th>
                           Action
