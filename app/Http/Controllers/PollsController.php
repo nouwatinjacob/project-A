@@ -31,15 +31,24 @@ class PollsController extends Controller
             'start_date' => 'required',
             'end_date' => 'required'
         ]);
-
-        Poll::create([
+            // dd(request()->all());
+        $poll = Poll::create([
             'title' => request()->title,
             'user_id' => Auth::id(),
             'start_date' => request()->start_date,
             'end_date' => request()->end_date
         ]);
+
         
+        for($i=0; $i<count(request()->addmore); $i++) {
+            $poll->pollItems()->create([
+                'name' => request()->addmore[$i]
+            ]);
+        }    
+        
+                
         Session::flash('success', 'Poll created successfully');
          return redirect()->back();
     }
+
 }
