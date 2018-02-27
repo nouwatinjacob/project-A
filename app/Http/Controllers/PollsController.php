@@ -10,10 +10,19 @@ use App\Poll;
 
 class PollsController extends Controller
 {
+    public function index()
+    {
+        $polls = Poll::all();
+
+        return view('polls.index')->with('polls', $polls);
+    }
+
+
     public function create()
     {
         return view('polls.create');
     }
+
 
     public function store()
     {
