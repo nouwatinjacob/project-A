@@ -32,7 +32,7 @@
                                                    
                           <td>
                                                             
-                              <a href="" class="btn btn-sm btn-primary">Edit</a>                              
+                              <a href="{{ route('items.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-primary">Edit</a>                              
                               <a href="{{ route('items.delete', ['id' => $item->id]) }}" class="btn btn-sm btn-danger">Delete</a>
                                                          
                           </td>                                                      
