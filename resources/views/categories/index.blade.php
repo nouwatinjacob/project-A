@@ -39,7 +39,7 @@
                           @endforeach
                         @else 
                         <tr>
-                          <th colspan=5 class="text-center">No Channels registered yet</th>      
+                          <th colspan=5 class="text-center">No Category registered yet</th>      
                         </tr>                         
                       </tbody>
                       @endif
