@@ -27,8 +27,7 @@
                           <tr>
                           <td>{{ $poll->title }}</td> 
                                                    
-                          <td>
-                              <a href="" class="btn btn-sm btn-secondary"><span class="fa fa-plus"> Add Items</span></a>
+                          <td>                              
                               <a href="" class="btn btn-sm btn-primary">Edit</a>                              
                               <a href="" class="btn btn-sm btn-danger">Delete</a>
                                                          
