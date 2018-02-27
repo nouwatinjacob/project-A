@@ -27,8 +27,9 @@
                           <tr>
                           <td>{{ $poll->title }}</td> 
                                                    
-                          <td>                              
-                              <a href="" class="btn btn-sm btn-primary">Edit</a>                              
+                          <td>
+                              <a href="{{ route('items', ['id' => $poll->id])}}" class="btn btn-sm btn-primary">Items</a>                              
+                              <a href="{{ route('polls.edit', ['id' => $poll->id])}}" class="btn btn-sm btn-primary">Edit</a>                              
                               <a href="" class="btn btn-sm btn-danger">Delete</a>
                                                          
                           </td>                                                      
