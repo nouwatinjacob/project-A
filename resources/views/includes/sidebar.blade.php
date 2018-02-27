@@ -14,20 +14,61 @@
 </div>
 <br>
 <div class="card">
-    <div class="card-header">Poll of the week</div>
+    <div class="card-header">       
+        <h3 class="card-title">
+            Poll of the week
+        </h3>
+    </div>
 
+    <form >    
         <div class="card-body">
-            <form >
-                <h6 class="text-center">Who is the All time Best Footballer </h6>
-                <div class="form-group">
-                    <label class="form-control">Cristiano Ronaldo <input type="checkbox" class="float-right"></label>
-                    <label class="form-control">Lionel Messi <input type="checkbox" class="float-right"></label>
-                    <label class="form-control">Ronaldinho <input type="checkbox" class="float-right"></label>
-                </div>
-                <p class="text-muted">Poll ends 20th December</p>
-                <div class="form-group">
-                    <button class="btn btn-success float-right mr-5">Vote</button>
-                </div>
-            </form>            
+            <h5 class="text-center">Who is the All Time Best Footballer?</h5>            
+                <ul class="list-group">
+                    <li class="list-group-item">
+                       <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios">
+                                Good
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios">
+                                Excellent
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios">
+                                Bed
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios">
+                                Can Be Improved
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios">
+                                No Comment
+                           </label>
+                        </div> 
+                    </li>
+                </ul>
+            <div class="card-footer text-center">
+                <button type="button" class="btn btn-success btn-block btn-sm ">Vote</button>
+                <a href="#">View Result</a>
+            </div>                        
         </div>
+        
 </div>
