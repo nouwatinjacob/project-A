@@ -63,4 +63,8 @@ Route::post('polls/items/store/{id}', 'PollsController@storeItem')->name('items.
 
 Route::get('polls/items/delete/{id}', 'PollsController@deleteItem')->name('items.delete');
 
+Route::get('polls/items/edit/{id}', 'PollsController@editItem')->name('items.edit');
+
+Route::post('polls/items/update/{id}', 'PollsController@updateItem')->name('items.update');
+
 });
