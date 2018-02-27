@@ -53,4 +53,14 @@ Route::get('polls/create', 'PollsController@create')->name('polls.create');
 
 Route::post('polls/store', 'PollsController@store')->name('polls.store');
 
+Route::get('polls/edit/{id}', 'PollsController@edit')->name('polls.edit');
+
+Route::get('polls/items/{id}', 'PollsController@items')->name('items');
+
+Route::get('polls/items/create/{id}', 'PollsController@createItems')->name('items.create');
+
+Route::post('polls/items/store/{id}', 'PollsController@storeItem')->name('items.store');
+
+Route::get('polls/items/delete/{id}', 'PollsController@deleteItem')->name('items.delete');
+
 });

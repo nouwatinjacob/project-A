@@ -19,6 +19,7 @@ class CreatePollsTable extends Migration
             $table->string('title');
             $table->date('start_date');
             $table->date('end_date');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

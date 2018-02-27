@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use Auth;
 use App\Poll;
+use App\PollItem;
 
 class PollsController extends Controller
 {
@@ -31,24 +32,73 @@ class PollsController extends Controller
             'start_date' => 'required',
             'end_date' => 'required'
         ]);
-            // dd(request()->all());
+            
         $poll = Poll::create([
             'title' => request()->title,
             'user_id' => Auth::id(),
             'start_date' => request()->start_date,
             'end_date' => request()->end_date
         ]);
-
         
-        for($i=0; $i<count(request()->addmore); $i++) {
-            $poll->pollItems()->create([
-                'name' => request()->addmore[$i]
-            ]);
-        }    
-        
-                
+        // for($i=0; $i<count(request()->addmore); $i++) {
+        //     $poll->pollItems()->create([
+        //         'name' => request()->addmore[$i]
+        //     ]);
+        // }    
+                        
         Session::flash('success', 'Poll created successfully');
          return redirect()->back();
+    }
+
+
+    public function edit($id)
+    {
+        return view('polls.edit')->with('poll', Poll::find($id));
+    }
+
+
+    public function items($id)
+    {
+        $poll = Poll::find($id);
+
+        return view('polls.items')->with('poll', $poll);
+    }
+
+
+    public function createItems($id)
+    {
+        return view('polls.create_item')->with('poll', Poll::find($id));
+    }
+
+
+    public function storeItem($id)
+    {
+        $this->validate(request(), [
+            'name' => 'required'
+        ]);
+
+        PollItem::create([
+            'name' => request()->name,
+            'poll_id' => $id
+        ]);
+
+        Session::flash('success', 'Item added successfully');
+        return redirect()->route('items', ['id' => $id]);
+    }
+
+
+    public function editItem($id)
+    {
+        return view('items.edit')->with('item', PollItem::find($id));
+    }
+
+
+    public function deleteItem($id)
+    {
+        PollItem::destroy($id);
+
+        Session::flash('success', 'Item deleted successfully');
+        return redirect()->back();
     }
 
 }
