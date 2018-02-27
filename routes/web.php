@@ -47,8 +47,8 @@ Route::get('reply/like/{id}', 'RepliesController@like')->name('reply.like');
 
 Route::get('reply/unlike/{id}', 'RepliesController@unlike')->name('reply.unlike');
 
-Route::get('polls', 'PollsController@index')->name('polls.index');
-
 Route::get('polls/create', 'PollsController@create')->name('polls.create');
+
+// Route::get('polls/create', 'PollsController@create')->name('polls.create');
 
 });
