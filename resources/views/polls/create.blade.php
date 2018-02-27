@@ -13,12 +13,12 @@
               <div class="card-header">Create new Poll</div>
 
               <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{ route('polls.store')}}" method="POST">
                      {{csrf_field()}}
 
                      <div class="form-group">
                         <label for="title">Poll Title</label>                       
-                       <input type="text" class="form-control" name="name" placeholder="Enter poll title">
+                       <input type="text" class="form-control" name="title" placeholder="Enter poll title">
                      </div>
                      <div class="form-group">
                         <label for="title">Start Date</label>                       
