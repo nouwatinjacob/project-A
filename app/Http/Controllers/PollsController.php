@@ -89,7 +89,21 @@ class PollsController extends Controller
 
     public function editItem($id)
     {
-        return view('items.edit')->with('item', PollItem::find($id));
+        return view('polls.edit_item')->with('item', PollItem::find($id));
+    }
+
+
+    public function updateItem($id)
+    {
+        $this->validate(request(), [
+            'name' => 'required'
+        ]);
+            
+        $item = PollItem::find($id);
+        $item->name = request()->name;
+        $item->save();
+        Session::flash('success', 'Item updated successfully');
+        return redirect()->route('items', ['id' => $item->poll_id]);
     }
 
 
