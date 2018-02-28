@@ -35,6 +35,12 @@
                     </li>
                 </ul>
                 @endforeach
+               <p class="text-muted text-center">
+                Start Date: &nbsp;<span class="fa fa-calendar-alt"> {{ $poll->start_date }}</span>
+               </p>
+               <p class="text-muted text-center">                
+                End Date: &nbsp;<span class="fa fa-calendar-alt"> {{ $poll->end_date }}</span>
+               </p>
             <div class="card-footer text-center">
                 <button type="button" class="btn btn-success btn-block btn-sm ">Vote</button>
                 <a href="#">View Result</a>
