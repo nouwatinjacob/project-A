@@ -8,6 +8,7 @@ use Session;
 use Auth;
 use App\Poll;
 use App\PollItem;
+use App\PollItemVote;
 
 class PollsController extends Controller
 {
@@ -114,5 +115,28 @@ class PollsController extends Controller
         Session::flash('success', 'Item deleted successfully');
         return redirect()->back();
     }
+
+
+    public function vote($id)
+    { 
+        
+        $item = PollItem::find($id);
+        if(request()->itemsOptions == '')
+        {
+            Session::flash('info', 'You must pick an item before voting');
+            return redirect()->back();
+        }
+        else{
+            $item->pollItemVotes()->create([
+                'user_id' => Auth::id(),
+                'poll_id' => $item->poll->id,
+                'poll_item_id' => request()->itemsOptions
+            ]);
+
+            Session::flash('message', 'You have voted');
+            return redirect()->back();
+        }
+        
+    } 
 
 }
