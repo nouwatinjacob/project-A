@@ -47,7 +47,7 @@ class PollsController extends Controller
         // }    
                         
         Session::flash('success', 'Poll created successfully');
-         return redirect()->back();
+         return redirect()->route('polls.index');
     }
 
 
