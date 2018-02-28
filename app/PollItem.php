@@ -14,4 +14,9 @@ class PollItem extends Model
     {
         return $this->belongsTo('App\Poll');
     }
+
+    public function pollItemVotes()
+    {
+        return $this->hasMany('App\PollItemVote');
+    }
 }
