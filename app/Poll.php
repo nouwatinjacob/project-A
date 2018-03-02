@@ -20,5 +20,5 @@ class Poll extends Model
         return $this->hasMany('App\PollItem');
     }
 
-      
+    
 }
