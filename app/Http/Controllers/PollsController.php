@@ -117,26 +117,43 @@ class PollsController extends Controller
     }
 
 
-    public function vote($id)
-    { 
-        
-        $item = PollItem::find($id);
+    public function vote()
+    {         
         if(request()->itemsOptions == '')
         {
             Session::flash('info', 'You must pick an item before voting');
             return redirect()->back();
         }
+
+        $item = PollItem::find(request()->itemsOptions);
+        $auth_voted_poll = PollItemVote::where('poll_id', $item->poll_id)->first();
+        
+        if(request()->itemsOptions == $auth_voted_poll->poll_item_id && $auth_voted_poll->user_id == Auth::id())
+        {
+            Session::flash('info', 'You have picked this item! , pick another item for your vote to count');
+            return redirect()->back();
+        }
+
+        if(request()->itemsOptions !== $auth_voted_poll->poll_item_id && $auth_voted_poll->user_id == Auth::id())
+        {
+            $auth_voted_poll->poll_item_id = intval(request()->itemsOptions);
+            $auth_voted_poll->save();
+            Session::flash('success', 'Your new pick has been updated');
+            return redirect()->back();
+        }
+                       
         else{
             $item->pollItemVotes()->create([
                 'user_id' => Auth::id(),
                 'poll_id' => $item->poll->id,
-                'poll_item_id' => request()->itemsOptions
+                'poll_item_id' => intval(request()->itemsOptions)
             ]);
 
-            Session::flash('message', 'You have voted');
+            Session::flash('success', 'You have voted');
             return redirect()->back();
-        }
-        
+                        
+        }        
+                        
     } 
 
 }

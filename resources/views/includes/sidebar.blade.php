@@ -19,13 +19,15 @@
             Poll of the week
         </h3>
     </div>
-    @foreach($polls as $poll)
-     
+    
+    <form action="{{ route('polls.vote')}}" method="POST">
+                {{csrf_field()}} 
+        
+    @foreach($polls as $poll)     
         <div class="card-body">
-            <h5 class="text-center">{{$poll->title}}</h5>
+            <h5 class="text-center">{{$poll->title}}</h5>             
                 @foreach($poll->pollItems as $items)
-                <form action="{{ route('polls.vote', ['id' => $items->id])}}" method="POST">
-                {{csrf_field()}}              
+                            
                 <ul class="list-group">
                     <li class="list-group-item">
                        <div class="radio">
@@ -47,8 +49,9 @@
                 <button type="submit" class="btn btn-success btn-block btn-sm ">Vote</button>
                 <a href="#">View Result</a>
             </div>
-            </form>                              
+                                         
         </div>
     <br> 
     @endforeach  
+    </form>
 </div>
