@@ -67,6 +67,6 @@ Route::get('polls/items/edit/{id}', 'PollsController@editItem')->name('items.edi
 
 Route::post('polls/items/update/{id}', 'PollsController@updateItem')->name('items.update');
 
-Route::post('polls/vote/{id}', 'PollsController@vote')->name('polls.vote');
+Route::post('polls/vote', 'PollsController@vote')->name('polls.vote');
 
 });
