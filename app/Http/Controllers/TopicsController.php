@@ -9,6 +9,7 @@ use App\Category;
 use App\Reply;
 use App\TopicLike;
 use App\ReplyLike;
+use App\Poll;
 use Auth;
 use Session;
 
@@ -22,9 +23,11 @@ class TopicsController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $activePolls = Poll::where('active', 1)->get();
 
         return view('forum')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
-                                   ->with('categories', $categories);
+                                   ->with('categories', $categories)
+                                   ->with('polls', $activePolls);
     }
 
     /**

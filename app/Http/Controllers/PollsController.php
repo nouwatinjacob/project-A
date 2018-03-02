@@ -8,6 +8,7 @@ use Session;
 use Auth;
 use App\Poll;
 use App\PollItem;
+use App\PollItemVote;
 
 class PollsController extends Controller
 {
@@ -47,7 +48,7 @@ class PollsController extends Controller
         // }    
                         
         Session::flash('success', 'Poll created successfully');
-         return redirect()->back();
+         return redirect()->route('polls.index');
     }
 
 
@@ -114,5 +115,45 @@ class PollsController extends Controller
         Session::flash('success', 'Item deleted successfully');
         return redirect()->back();
     }
+
+
+    public function vote()
+    {         
+        if(request()->itemsOptions == '')
+        {
+            Session::flash('info', 'You must pick an item before voting');
+            return redirect()->back();
+        }
+
+        $item = PollItem::find(request()->itemsOptions);
+        $auth_voted_poll = PollItemVote::where('poll_id', $item->poll_id)->first();
+        
+        if(request()->itemsOptions == $auth_voted_poll->poll_item_id && $auth_voted_poll->user_id == Auth::id())
+        {
+            Session::flash('info', 'You have picked this item! , pick another item for your vote to count');
+            return redirect()->back();
+        }
+
+        if(request()->itemsOptions !== $auth_voted_poll->poll_item_id && $auth_voted_poll->user_id == Auth::id())
+        {
+            $auth_voted_poll->poll_item_id = intval(request()->itemsOptions);
+            $auth_voted_poll->save();
+            Session::flash('success', 'Your new pick has been updated');
+            return redirect()->back();
+        }
+                       
+        else{
+            $item->pollItemVotes()->create([
+                'user_id' => Auth::id(),
+                'poll_id' => $item->poll->id,
+                'poll_item_id' => intval(request()->itemsOptions)
+            ]);
+
+            Session::flash('success', 'You have voted');
+            return redirect()->back();
+                        
+        }        
+                        
+    } 
 
 }

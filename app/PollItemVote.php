@@ -10,12 +10,7 @@ class PollItemVote extends Model
         'poll_item_id', 'user_id', 'poll_id'
     ];
 
-    public function poll()
-    {
-        return $this->belongsTo('App\Poll');
-    }
-
-    public function user()
+       public function user()
     {
         return $this->belongsTo('App\User');
     }

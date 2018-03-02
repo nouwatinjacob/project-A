@@ -19,56 +19,39 @@
             Poll of the week
         </h3>
     </div>
-
-    <form >    
+    
+    <form action="{{ route('polls.vote')}}" method="POST">
+                {{csrf_field()}} 
+        
+    @foreach($polls as $poll)     
         <div class="card-body">
-            <h5 class="text-center">Who is the All Time Best Footballer?</h5>            
+            <h5 class="text-center">{{$poll->title}}</h5>             
+                @foreach($poll->pollItems as $items)
+                            
                 <ul class="list-group">
                     <li class="list-group-item">
                        <div class="radio">
                             <label>
-                                <input type="radio" name="optionsRadios">
-                                Good
+                                <input type="radio" name="itemsOptions" value="{{$items->id}}">
+                                {{$items->name}}
                             </label>
                         </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Excellent
-                            </label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Bed
-                            </label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Can Be Improved
-                            </label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                No Comment
-                           </label>
-                        </div> 
                     </li>
                 </ul>
+                @endforeach
+               <p class="text-muted text-center">
+                Start Date: &nbsp;<span class="fa fa-calendar-alt"> {{ $poll->start_date }}</span>
+               </p>
+               <p class="text-muted text-center">                
+                End Date: &nbsp;<span class="fa fa-calendar-alt"> {{ $poll->end_date }}</span>
+               </p>
             <div class="card-footer text-center">
-                <button type="button" class="btn btn-success btn-block btn-sm ">Vote</button>
+                <button type="submit" class="btn btn-success btn-block btn-sm ">Vote</button>
                 <a href="#">View Result</a>
-            </div>                        
+            </div>
+                                         
         </div>
-        
+    <br> 
+    @endforeach  
+    </form>
 </div>
