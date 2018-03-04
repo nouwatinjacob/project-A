@@ -37,7 +37,9 @@ class TopicsController extends Controller
      */
     public function create()
     {
-        return view('topics.create')->with('categories', Category::all());
+        $activePolls = Poll::where('active', 1)->get();
+        return view('topics.create')->with('categories', Category::all())
+                                    ->with('polls', $activePolls);
     }
 
     /**
@@ -78,6 +80,7 @@ class TopicsController extends Controller
        $topic = Topic::find($id);
        $categories = Category::all();
        $replies = Reply::where('topic_id', $id)->get();
+       $activePolls = Poll::where('active', 1)->get();
 
        $topic_likes = $topic->topicLikes()->where('like', 1)->count();
        $topic_unlikes = $topic->topicLikes()->where('like', 0)->count();
@@ -92,7 +95,8 @@ class TopicsController extends Controller
                                  ->with('categories', $categories)
                                  ->with('replies', $replies)
                                  ->with('topic_likes', $topic_likes)
-                                 ->with('topic_unlikes', $topic_unlikes);
+                                 ->with('topic_unlikes', $topic_unlikes)
+                                 ->with('polls', $activePolls);
     }
 
     /**
@@ -134,12 +138,14 @@ class TopicsController extends Controller
         $topics = Topic::where('category_id', $id)->paginate(5);
 
         $category = Category::find($id);
+        $activePolls = Poll::where('active', 1)->get();
 
         if($topics->count() > 0)
         {
             return view('topics.categoryTopic')->with('topics', $topics)
                                            ->with('categories', Category::all())
-                                           ->with('category', $category);
+                                           ->with('category', $category)
+                                           ->with('polls', $activePolls);
         }
         else{
             Session::flash('info', 'This category has no Topics');
