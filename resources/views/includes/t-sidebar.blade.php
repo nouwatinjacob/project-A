@@ -5,7 +5,7 @@
                                 <div class="blocktxt">
                                   @foreach($categories as $category)
                                     <ul class="cats">
-                                        <li><a href="#">{{ $category->name }}<span class="badge pull-right">{{ $category->topics->count() }}</span></a></li>                                        
+                                        <li><a href="{{ route('topic.category', ['id' => $category->id]) }}">{{ $category->name }}<span class="badge pull-right">{{ $category->topics->count() }}</span></a></li>                                        
                                     </ul>
                                  @endforeach   
                                 </div>

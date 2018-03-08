@@ -54,7 +54,7 @@
             <div class="headernav">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="index.html"><img src="{{ asset('images/logo.jpg') }}" alt=""  /></a></div>
+                        <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="{{route('forum')}}"><img src="{{ asset('images/logo.jpg') }}" alt=""  /></a></div>
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                             <div class="dropdown">
                                 <a data-toggle="dropdown" href="#" >Borderlands 2</a> <b class="caret"></b>
@@ -68,9 +68,9 @@
                         </div>
                         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
                             <div class="wrap">
-                                <form action="#" method="post" class="form">
-                                    <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
-                                    <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
+                                <form action="/results" method="GET" class="form">
+                                    <div class="pull-left txt"><input type="text" name="query" class="form-control" placeholder="Search Topics"></div>
+                                    <div class="pull-right"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -78,21 +78,29 @@
                         @if(Auth::check())
                         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
                             <div class="stnt pull-left">                            
-                                <form action="03_new_topic.html" method="post" class="form">
-                                    <button class="btn btn-primary">Start New Topic</button>
-                                </form>
+                                
+                                <a href="{{ route('topic.create') }}" class="btn btn-primary">Start New Topic</a>
+                                
                             </div>
                             <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
                             <div class="avatar pull-left dropdown">
-                                <a data-toggle="dropdown" href="#"><img src="images/avatar.jpg" alt="" /></a> <b class="caret"></b>
+                                <a data-toggle="dropdown" href="#"><img src="{{asset(Auth::user()->avatar)}}" alt="Auth::user()->avatar" width="35px" height="35px" /></a> <b class="caret"></b>
                                 <div class="status green">&nbsp;</div>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Log Out</a></li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-3" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                        >Log Out</a>
+                                    </li>
                                     <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
                                 </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                 </form>
                             </div>
                             
                             <div class="clearfix"></div>
@@ -101,7 +109,7 @@
                         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
                             <div class="stnt pull-left"> 
 
-                                <a href="" class="btn btn-primary">login</a>
+                                <a href="{{ route('login') }}" class="btn btn-primary">login</a>
                                
                             </div>
                             
