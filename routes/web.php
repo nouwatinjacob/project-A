@@ -11,13 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Main Routes for the Forum Start
+
+Route::group(['middleware' => 'auth'], function(){
+
+});
+
+Route::get('/', 'ForumsController@index')->name('forum');
+
+Route::get('topic/{id}', 'ForumsController@show')->name('topic.show');
+
+
+
+// Main Routes for the Forum Start
+
+
+
+// 
 
 Route::group(['middleware' => 'auth'], function(){
 
