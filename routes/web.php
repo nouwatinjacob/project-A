@@ -44,7 +44,7 @@ Route::get('/', 'ForumsController@index')->name('forum');
 Route::get('topic/{id}', 'ForumsController@show')->name('topic.show');
 
 Route::get('results', function () {
-        $topics = \App\Topic::where('title', 'like', '%'.request('query').'%')->get();
+        $topics = \App\Topic::where('title', 'like', '%'.request('query').'%')->paginate(3);
         $activePolls = \App\Poll::where('active', 1)->get();
 
         return view('/results')->with('topics', $topics)

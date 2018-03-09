@@ -19,7 +19,7 @@ class ForumsController extends Controller
     {
         $categories = Category::all();
         $activePolls = Poll::where('active', 1)->get();
-        return view('index')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(7))
+        return view('index')->with('topics', Topic::orderBy('created_at', 'desc')->paginate(3))
                             ->with('categories', $categories)
                             ->with('polls', $activePolls);
     }

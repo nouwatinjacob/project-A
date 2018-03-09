@@ -64,7 +64,15 @@
                     </div>
                 </div>
 
-
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-xs-12">                
+                            <div class="pull-left">            
+                            {{ $topics->links('vendor.pagination.custom') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                
             </section>
 
