@@ -95,8 +95,7 @@
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                         >Log Out</a>
-                                    </li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
+                                    </li>                                    
                                 </ul>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
