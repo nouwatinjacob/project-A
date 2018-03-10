@@ -22,7 +22,7 @@
                                 <div class="wrap-ut pull-left">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                            <img src="{{$topic->user->avatar}}" alt="" width="35px" height="35px"/>
+                                            <img src="{{ asset($topic->user->avatar) }}" alt="$topic->user->avatar" width="35px" height="35px"/>
                                             <div class="status green">&nbsp;</div>
                                         </div>
 
